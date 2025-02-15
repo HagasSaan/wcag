@@ -15,27 +15,26 @@
     </div>
     <div class="container">
         <div class="column">
+            <h2>AI Assistant</h2>
+            <form id="chatgpt-form">
+                <input id="chatgpt-user-input" rows="1" cols="50" placeholder="Type your message here..."></input>
+                <button type="submit" id="chatgpt-submit">Send</button>
+                <div id="response"></div>
+            </form>
+
             <h2>Recipe Form</h2>
             <form id="recipe-form">
                 <input type="text" id="recipe-name" placeholder="Recipe Name" required><br>
-                <textarea id="ingredients" placeholder="Ingredients" rows=10 required></textarea><br>
-                <textarea id="instructions" placeholder="Instructions" rows=20 required></textarea><br>
+                <div class="row">
+                    <textarea id="ingredients" placeholder="Ingredients" rows=10 required></textarea>
+                    <textarea id="instructions" placeholder="Instructions" rows=10 required></textarea>
+                </div>
                 <button type="submit">Save Recipe</button>
             </form>
 
-            <div id="recipes-list"></div>
+            <div id="recipes-list" class="recipes-list"></div>
         </div>
 
-        <div class="column">
-            <h2>AI Assistant</h2>
-            <form id="chatgpt-form">
-                <textarea id="chatgpt-user-input" rows="4" cols="50" placeholder="Type your message here..."></textarea>
-                <button type="submit" id="chatgpt-submit">Send</button>
-            </form>
-            <div id="chat-container">
-                <div id="response"></div>
-            </div>
-        </div>
     </div>
 
     <script type="module" src="js/auth.js"></script>
