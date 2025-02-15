@@ -83,7 +83,7 @@ async function deleteRecipe(recipeName) {
 }
 
 async function renderRecipies(recipies) {
-  recipesList.innerHTML = ``; // Clear current list
+  recipesList.innerHTML = ``;
   if (recipies.length != 0) {
     recipesList.innerHTML += `<h2>Saved Recipes</h2>`;
   }

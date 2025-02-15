@@ -80,6 +80,7 @@ async function askChatGPT(event) {
       recipeNameInput.value = recipeName;
       ingredientsInput.value = ingredientsList.join("\n");
       instructionsInput.value = instructionsList.join("\n");
+      responseDiv.innerHTML = "Recipe generated. Enjoy!";
     } catch (error) {
       console.log("something wrong with ChatGPT response: ", botReply);
       responseDiv.innerHTML =
