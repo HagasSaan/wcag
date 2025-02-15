@@ -15,7 +15,7 @@ function signIn() {
       const token = credential.accessToken;
       const user = result.user;
       localStorage.setItem("email", JSON.stringify(user.email));
-      window.location = "recipies.html";
+      window.location = "recipes.html";
     })
     .catch((error) => {
       const errorCode = error.code;
