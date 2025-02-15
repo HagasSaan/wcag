@@ -5,8 +5,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-auth.js";
 
 let storedCredential = localStorage["credential"];
-if (!storedCredential && window.location.pathname != "/wcag") {
-  window.location.href = "/wcag";
+if (!storedCredential) {
+  window.location.href = "index.html";
 }
 
 export let user;
