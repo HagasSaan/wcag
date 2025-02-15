@@ -1,30 +1,29 @@
-<!-- recipe browser and saver -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recipe Saver</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0078D7">
+    <title>Checklist App</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="manifest" href="../../manifest.json"> -->
 </head>
+<!-- Google tag (gtag.js) -->
+<script type="module" async src="https://www.googletagmanager.com/gtag/js?id=G-QLL1Z9B3N1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QLL1Z9B3N1');
+</script>
 <body>
-  <div class="container">
-    <h1>Recipe Saver</h1>
-
-    <!-- Recipe Form -->
-    <form id="recipe-form">
-      <input type="text" id="recipe-name" placeholder="Recipe Name" required><br>
-      <textarea id="ingredients" placeholder="Ingredients" required></textarea><br>
-      <textarea id="instructions" placeholder="Instructions" required></textarea><br>
-      <button type="submit">Save Recipe</button>
-    </form>
-
-    <div class="saved-recipes">
-      <h2>Saved Recipes</h2>
-      <div id="recipes-list"></div>
-    </div>
-  </div>
-
-  <script type="module" src="script.js"></script>
+    <header>
+        <h1>Recipe Saver</h1>
+    </header>
+    <main>
+       <button id="signIn">Sign In</button>
+    </main>
+    <script type="module" src="js/signIn.js"></script>
 </body>
 </html>

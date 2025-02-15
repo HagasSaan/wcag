@@ -1,0 +1,41 @@
+<!-- recipe browser and saver -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Saver</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Recipe Saver</h1>
+    <div class="container">
+
+        <div class="column">
+            <!-- Recipe Form -->
+            <form id="recipe-form">
+                <input type="text" id="recipe-name" placeholder="Recipe Name" required><br>
+                <textarea id="ingredients" placeholder="Ingredients" required></textarea><br>
+                <textarea id="instructions" placeholder="Instructions" required></textarea><br>
+                <button type="submit">Save Recipe</button>
+            </form>
+
+            <div id="recipes-list"></div>
+        </div>
+
+        <div class="column">
+            <h2>AI Assistant</h2>
+            <form id="chatgpt-form">
+                <textarea id="user-input" rows="4" cols="50" placeholder="Type your message here..."></textarea>
+                <button type="submit">Send</button>
+            </form>
+            <div id="chat-container">
+                <div id="response"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/recipies.js"></script>
+    <script type="module" src="js/chatbot.js"></script>
+</body>
+</html>

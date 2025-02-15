@@ -1,26 +1,22 @@
-import { app } from "./firebase_config.js";
+import { db } from "./firebaseConfig.js";
 
 import {
-  getFirestore,
   collection,
   getDocs,
   setDoc,
   deleteDoc,
   doc,
 } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
-const db = getFirestore(app);
 const collectionName = "recipies";
 
-console.log("db", db);
+console.log("db initialized: ", db);
 
-// Select DOM elements
 const recipeForm = document.getElementById("recipe-form");
 const recipeNameInput = document.getElementById("recipe-name");
 const ingredientsInput = document.getElementById("ingredients");
 const instructionsInput = document.getElementById("instructions");
 const recipesList = document.getElementById("recipes-list");
 
-// Load saved recipes from localStorage
 async function loadRecipes() {
   console.log("Loading recipies");
   const recipiesCollection = collection(db, collectionName);
@@ -30,7 +26,6 @@ async function loadRecipes() {
   return recipiesList;
 }
 
-// Create a new recipe card
 function createRecipeCard(recipe) {
   const recipeCard = document.createElement("div");
   recipeCard.classList.add("recipe-card");
@@ -57,11 +52,9 @@ function createRecipeCard(recipe) {
   recipesList.appendChild(recipeCard);
 }
 
-// Save a new recipe
 async function saveRecipe(event) {
   event.preventDefault();
 
-  // Create the recipe object
   let recipeName = recipeNameInput.value;
   const recipe = {
     name: recipeName,
@@ -71,12 +64,10 @@ async function saveRecipe(event) {
 
   await setDoc(doc(db, collectionName, recipeName), recipe);
 
-  // Clear form fields
   recipeNameInput.value = "";
   ingredientsInput.value = "";
   instructionsInput.value = "";
 
-  // Reload the recipes list
   let recipies = await loadRecipes();
   await renderRecipies(recipies);
 }
@@ -85,8 +76,6 @@ async function deleteRecipe(recipeName) {
   try {
     await deleteDoc(doc(db, collectionName, recipeName));
     console.log(`Recipe ${recipeName} deleted`);
-
-    // Reload the recipes list after deletion
     let recipies = await loadRecipes();
     await renderRecipies(recipies);
   } catch (error) {
@@ -95,7 +84,11 @@ async function deleteRecipe(recipeName) {
 }
 
 async function renderRecipies(recipies) {
-  recipesList.innerHTML = ""; // Clear current list
+  recipesList.innerHTML = ``; // Clear current list
+  if (recipies.length != 0) {
+    recipesList.innerHTML += `<h2>Saved Recipes</h2>`;
+  }
+
   recipies.forEach((recipe) => {
     createRecipeCard(recipe);
   });
@@ -107,3 +100,5 @@ recipeForm.addEventListener("submit", saveRecipe);
 // Initial load of recipes
 let recipies = await loadRecipes();
 await renderRecipies(recipies);
+
+console.log("recipies.js initialized");

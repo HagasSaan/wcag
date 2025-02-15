@@ -6,12 +6,23 @@ body {
     padding: 0;
 }
 
+div {
+    border: 1px black solid;
+}
+
 .container {
-    width: 50%;
+    width: 90%;
     margin: 50px auto;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
 }
 
 h1,
@@ -19,24 +30,24 @@ h2 {
     text-align: center;
 }
 
-#recipe-form input,
-#recipe-form textarea,
-#recipe-form button {
+input,
+textarea,
+button {
     width: 100%;
-    padding: 10px;
+    padding: 10px 0px 10px 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-#recipe-form button {
+button {
     background-color: #4caf50;
     color: white;
     border: none;
     cursor: pointer;
 }
 
-#recipe-form button:hover {
+button:hover {
     background-color: #45a049;
 }
 
