@@ -1,5 +1,5 @@
-import { db } from "./firebaseConfig.js";
-
+import { db, auth } from "./firebaseConfig.js";
+import { user } from "./auth.js";
 import {
   collection,
   getDocs,
@@ -7,7 +7,6 @@ import {
   deleteDoc,
   doc,
 } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
-const collectionName = "recipies";
 
 console.log("db initialized: ", db);
 
@@ -19,7 +18,7 @@ const recipesList = document.getElementById("recipes-list");
 
 async function loadRecipes() {
   console.log("Loading recipies");
-  const recipiesCollection = collection(db, collectionName);
+  const recipiesCollection = collection(db, `${user.uid}`);
   const recipiesSnapshot = await getDocs(recipiesCollection);
   const recipiesList = recipiesSnapshot.docs.map((doc) => doc.data());
   console.log("Loaded recipies: ", recipiesList);
@@ -62,7 +61,7 @@ async function saveRecipe(event) {
     instructions: instructionsInput.value,
   };
 
-  await setDoc(doc(db, collectionName, recipeName), recipe);
+  await setDoc(doc(db, user.uid, recipeName), recipe);
 
   recipeNameInput.value = "";
   ingredientsInput.value = "";
@@ -74,7 +73,7 @@ async function saveRecipe(event) {
 
 async function deleteRecipe(recipeName) {
   try {
-    await deleteDoc(doc(db, collectionName, recipeName));
+    await deleteDoc(doc(db, user.uid, recipeName));
     console.log(`Recipe ${recipeName} deleted`);
     let recipies = await loadRecipes();
     await renderRecipies(recipies);
@@ -94,10 +93,8 @@ async function renderRecipies(recipies) {
   });
 }
 
-// Event listener for form submission
 recipeForm.addEventListener("submit", saveRecipe);
 
-// Initial load of recipes
 let recipies = await loadRecipes();
 await renderRecipies(recipies);
 

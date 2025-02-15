@@ -1,8 +1,22 @@
-import { CHATGPT_API_KEY } from "./chatgptConfig.js";
+import { db, auth } from "./firebaseConfig.js";
+
+import {
+  doc,
+  getDoc,
+} from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
 
 const chatgptForm = document.getElementById("chatgpt-form");
 const userInput = document.getElementById("user-input");
 const responseDiv = document.getElementById("response");
+
+const chatgptConfig = await getDoc(doc(db, "chatgpt", "key"));
+if (!chatgptConfig.exists()) {
+  console.error(
+    "something wrong with ChatGPT API Key in firebase. Check if it exists on chatgpt/key and permissions to access",
+  );
+}
+
+const chatgpt_api_key = chatgptConfig.data().key;
 
 async function askChatGPT(event) {
   event.preventDefault();
@@ -19,7 +33,7 @@ async function askChatGPT(event) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${CHATGPT_API_KEY}`,
+        Authorization: `Bearer ${chatgpt_api_key}`,
       },
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
