@@ -28,7 +28,6 @@ function signIn() {
       );
     });
 }
-
 signInBttn.addEventListener("click", function (event) {
   signIn(auth, provider);
 });

@@ -8,7 +8,7 @@ import {
   doc,
 } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
 
-console.log("db initialized: ", db);
+console.log("db initialized");
 
 const recipeForm = document.getElementById("recipe-form");
 const recipeNameInput = document.getElementById("recipe-name");
@@ -47,7 +47,7 @@ function createRecipeCard(recipe) {
 
   const deleteButton = recipeCard.querySelector(".delete-btn");
   deleteButton.addEventListener("click", () => deleteRecipe(recipe.name));
-
+  recipeCard.tabIndex = 0;
   recipesList.appendChild(recipeCard);
 }
 
@@ -94,6 +94,10 @@ async function renderRecipies(recipies) {
 }
 
 recipeForm.addEventListener("submit", saveRecipe);
+signOutBttn.addEventListener("click", function (event) {
+  localStorage.removeItem("credential");
+  window.location.href = "index.html";
+});
 
 let recipies = await loadRecipes();
 await renderRecipies(recipies);
