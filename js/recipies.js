@@ -26,14 +26,15 @@ async function loadRecipes() {
 }
 
 function createRecipeCard(recipe) {
+  console.log(recipe);
   const recipeCard = document.createElement("div");
   recipeCard.classList.add("recipe-card");
   recipeCard.innerHTML = `
     <h3>${recipe.name}</h3>
     <h4>Ingredients:</h4>
-    <p>${recipe.ingredients}</p>
+    <p>${recipe.ingredients.join("<br>")}</p>
     <h4>Instructions:</h4>
-    <p>${recipe.instructions}</p>
+    <p>${recipe.instructions.join("<br>")}</p>
     <button class="edit-btn">Edit</button>
     <button class="delete-btn">Delete</button>
   `;
@@ -41,8 +42,8 @@ function createRecipeCard(recipe) {
   const editButton = recipeCard.querySelector(".edit-btn");
   editButton.addEventListener("click", () => {
     recipeNameInput.value = recipe.name;
-    ingredientsInput.value = recipe.ingredients;
-    instructionsInput.value = recipe.instructions;
+    ingredientsInput.value = recipe.ingredients.join("\n");
+    instructionsInput.value = recipe.instructions.join("\n");
   });
 
   const deleteButton = recipeCard.querySelector(".delete-btn");
@@ -57,8 +58,8 @@ async function saveRecipe(event) {
   let recipeName = recipeNameInput.value;
   const recipe = {
     name: recipeName,
-    ingredients: ingredientsInput.value,
-    instructions: instructionsInput.value,
+    ingredients: ingredientsInput.value.replace("<br>", "\n").split("\n"),
+    instructions: instructionsInput.value.replace("<br>", "\n").split("\n"),
   };
 
   await setDoc(doc(db, user.uid, recipeName), recipe);
