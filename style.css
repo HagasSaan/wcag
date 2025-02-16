@@ -59,14 +59,15 @@ button {
 }
 
 button {
-    background-color: #4caf50;
+    background-color: #506070;
     color: white;
     border: none;
     cursor: pointer;
+    font-size: 18px;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #405060;
 }
 
 .saved-recipes {
