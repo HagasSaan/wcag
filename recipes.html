@@ -8,34 +8,49 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Recipe Saver</h1>
-
-    <div id="sign">
-        <button id="signOutBttn">Sign Out</button>
-    </div>
-    <div class="container">
-        <div class="column">
-            <h2>AI Assistant</h2>
-            <form id="chatgpt-form">
-                <input id="chatgpt-user-input" rows="1" cols="50" placeholder="Type your message here..."></input>
-                <button type="submit" id="chatgpt-submit">Send</button>
-                <div id="response"></div>
-            </form>
-
-            <h2>Recipe Form</h2>
-            <form id="recipe-form">
-                <input type="text" id="recipe-name" placeholder="Recipe Name" required><br>
-                <div class="row">
-                    <textarea id="ingredients" placeholder="Ingredients" rows=10 required></textarea>
-                    <textarea id="instructions" placeholder="Instructions" rows=10 required></textarea>
-                </div>
-                <button type="submit">Save Recipe</button>
-            </form>
-
-            <div id="recipes-list" class="recipes-list"></div>
+    <header>
+        <h1>Recipe Saver</h1>
+        <div id="sign">
+            <button id="signOutBttn">Sign Out</button>
         </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="column">
+                <h2>AI Assistant</h2>
+                <form id="chatgpt-form">
+                    <label for="chatgpt-user-input">
+                        <div style="display: none;">C</div>
+                        <input id="chatgpt-user-input" rows="1" cols="50" placeholder="Type your message here..."></input>
+                    </label>
+                    <button type="submit" id="chatgpt-submit">Send</button>
+                    <div id="response"></div>
+                </form>
 
-    </div>
+                <h2>Recipe Form</h2>
+                <form id="recipe-form">
+                    <label for="recipe-name">
+                        <div style="display: none;">Recipe Name</div>
+                        <input type="text" id="recipe-name" placeholder="Recipe Name" required>
+                    </label>
+                    <div class="row">
+                        <label for="ingredients">
+                            <div style="display: none;">Ingredients</div>
+                            <textarea id="ingredients" placeholder="Ingredients" rows=10 required></textarea>
+                        </label>
+                        <label for="instructions">
+                            <div style="display: none;">Instructions</div>
+                            <textarea id="instructions" placeholder="Instructions" rows=10 required></textarea>
+                        </label>
+
+                    </div>
+                    <button type="submit">Save Recipe</button>
+                </form>
+
+                <div id="recipes-list" class="recipes-list"></div>
+            </div>
+        </div>
+    </main>
 
     <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/recipies.js"></script>
